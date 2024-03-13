@@ -8,6 +8,10 @@ h1 {
     font-weight: 700;
 }
 
+div {
+    text-align: center;
+}
+
 .form input {
     border-radius: 3px;
 }
