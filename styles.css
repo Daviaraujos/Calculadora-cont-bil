@@ -1,8 +1,25 @@
 * {
-    background-color: aquamarine;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
 }
 
-form h1 {
+h1 {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
+}
+
+.form input {
+    border-radius: 3px;
+}
+
+.form select {
+    border-radius: 3px;
+}
+
+.form {
+    border-radius: 3px;
+}
+
+.form button {
+    border-radius: 3px;
 }
