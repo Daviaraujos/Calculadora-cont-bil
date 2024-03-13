@@ -15,6 +15,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+div {
+    padding: 50px;
+}
+
 h1 {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
@@ -23,7 +27,6 @@ h1 {
 
 .form {
     text-align: center;
-    padding: 10px;
     justify-content: center;
     display: flex;
     gap: 10px;
@@ -63,16 +66,17 @@ h1 {
     <div>
         <h1>Tabela Simples Nacional</h1>
         <form class="form">
-            <input type="text" placeholder="Receita Bruta"/>
-            <input type="text" placeholder="Folha de Salários"/>
-            <select value="selectedOption" onChange={}>
-                <option value="anexo1">Anexo I</option>
-                <option value="anexo1">Anexo II</option>
-                <option value="anexo1">Anexo III</option>
-                <option value="anexo1">Anexo IV</option>
-                <option value="anexo1">Anexo V</option>
+            <input id="num1" type="text" placeholder="* Receita Bruta"/>
+            <input id="num2" type="text" placeholder="* Folha de Salários"/>
+            <select id="operacao" value="selectedOption">
+                <option value="adicao">Adição</option>
+                <option value="subtracao">Subtração</option>
+                <option value="multiplicacao">Multiplicação</option>
+                <option value="divisao">Divisão</option>
+                <option value="potenciacao">Potenciação</option>
             </select>
-            <button type="button" onClick={}>Mostrar tabela</button>
+            <input id="resultado" type="text" placeholder="resultado" readOnly/>
+            <button type="button" onClick="calcular()">Calcular</button>
         </form>
     </div>
 </body>
