@@ -72,23 +72,23 @@ function calcularImpostos(receitaBruta, anexoSelecionado) {
     const faixa = faixas.find(f => receitaBruta <= f.ate);
 
     // Cálculo dos impostos
-    let irpj = 0.22; // Exemplo fictício
-    let csll = 0.14; // Exemplo fictício
-    let cofins = 0.51; // Exemplo fictício
-    let pis = 0.11; // Exemplo fictício
-    let cpp = 1.66; // Exemplo fictício
-    let icms = 1.36; // Exemplo fictício
-    let iss = 0; // Exemplo fictício
-    let ipi = 0; // Exemplo fictício
+    let irpj = 0.055; // Exemplo fictício
+    let csll = 0.035; // Exemplo fictício
+    let cofins = 0.1275; // Exemplo fictício
+    let pis = 0.0275; // Exemplo fictício
+    let cpp = 0.415; // Exemplo fictício
+    let icms = 0.34; // Exemplo fictício
+    let iss = 0.075; // Exemplo fictício
+    let ipi = 0.075; // Exemplo fictício
 
-    if (faixa) {
-        const aliquota = faixa.aliquota / 100;
-        irpj = receitaBruta * irpj * aliquota;
-        csll = receitaBruta * csll * aliquota;
-        cofins = receitaBruta * cofins * aliquota;
-        pis = receitaBruta * pis * aliquota;
-        cpp = receitaBruta * cpp * aliquota;
-        icms = receitaBruta * icms * aliquota;
+    if (faixa) { //Mudar de acordo com as faixas do gov: https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm
+        const aliquota = faixa.aliquota;
+        irpj =  irpj * aliquota;
+        csll = csll * aliquota;
+        cofins = cofins * aliquota;
+        pis =  pis * aliquota;
+        cpp =  cpp * aliquota;
+        icms = icms * aliquota;
         // Considerando que ISS e IPI não têm desconto do valor recolhido
         return {
             receitaBruta: receitaBruta,
