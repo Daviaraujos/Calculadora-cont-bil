@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const anexoSelecionado = document.getElementById('anexos').value;
 
         const resultado = calcularImpostos(receitaBruta, anexoSelecionado);
-        exibirResultado(resultado);
+        exibirResultado(resultado, anexoSelecionado);
     });
 });
 
@@ -107,7 +107,7 @@ function calcularImpostos(receitaBruta, anexoSelecionado) {
     }
 }
 
-function exibirResultado(resultado) {
+function exibirResultado(resultado, anexoSelecionado) {
     // Remover a tabela anterior, se existir
     const tabelaAnterior = document.getElementById('tabela-resultado');
     if (tabelaAnterior) {
@@ -116,7 +116,11 @@ function exibirResultado(resultado) {
 
     const table = document.createElement('table');
     table.id = 'tabela-resultado';
-    table.innerHTML = `
+
+
+    switch (anexoSelecionado) {
+        case 'Anexo1':
+            table.innerHTML = `
         <tr>
             <th>Receita Bruta em 12 meses</th>
             <th>Alíquota</th>
@@ -126,7 +130,30 @@ function exibirResultado(resultado) {
             <th>PIS</th>
             <th>CPP</th>
             <th>ICMS</th>
-            <th>ISS</th>
+        </tr>
+        <tr>
+            <td>${resultado.receitaBruta}</td>
+            <td>${resultado.aliquota}%</td>
+            <td>${resultado.irpj.toFixed(2)}%</td>
+            <td>${resultado.csll.toFixed(2)}%</td>
+            <td>${resultado.cofins.toFixed(2)}%</td>
+            <td>${resultado.pis.toFixed(2)}%</td>
+            <td>${resultado.cpp.toFixed(2)}%</td>
+            <td>${resultado.icms.toFixed(2)}%</td>
+        </tr>
+    `;
+            break;
+        case 'Anexo2':
+            table.innerHTML = `
+        <tr>
+            <th>Receita Bruta em 12 meses</th>
+            <th>Alíquota</th>
+            <th>IRPJ</th>
+            <th>CSLL</th>
+            <th>COFINS</th>
+            <th>PIS</th>
+            <th>CPP</th>
+            <th>ICMS</th>
             <th>IPI</th>
         </tr>
         <tr>
@@ -138,9 +165,84 @@ function exibirResultado(resultado) {
             <td>${resultado.pis.toFixed(2)}%</td>
             <td>${resultado.cpp.toFixed(2)}%</td>
             <td>${resultado.icms.toFixed(2)}%</td>
-            <td>${resultado.iss.toFixed(2)}%</td>
             <td>${resultado.ipi.toFixed(2)}%</td>
         </tr>
     `;
+            break;
+        case 'Anexo3':
+            table.innerHTML = `
+        <tr>
+            <th>Receita Bruta em 12 meses</th>
+            <th>Alíquota</th>
+            <th>IRPJ</th>
+            <th>CSLL</th>
+            <th>COFINS</th>
+            <th>PIS</th>
+            <th>CPP</th>
+            <th>ISS</th>
+        </tr>
+        <tr>
+            <td>${resultado.receitaBruta}</td>
+            <td>${resultado.aliquota}%</td>
+            <td>${resultado.irpj.toFixed(2)}%</td>
+            <td>${resultado.csll.toFixed(2)}%</td>
+            <td>${resultado.cofins.toFixed(2)}%</td>
+            <td>${resultado.pis.toFixed(2)}%</td>
+            <td>${resultado.cpp.toFixed(2)}%</td>
+            <td>${resultado.iss.toFixed(2)}%</td>
+        </tr>
+    `;
+            break;
+        case 'Anexo4':
+            table.innerHTML = `
+        <tr>
+            <th>Receita Bruta em 12 meses</th>
+            <th>Alíquota</th>
+            <th>IRPJ</th>
+            <th>CSLL</th>
+            <th>COFINS</th>
+            <th>PIS</th>
+            <th>ISS</th>
+        </tr>
+        <tr>
+            <td>${resultado.receitaBruta}</td>
+            <td>${resultado.aliquota}%</td>
+            <td>${resultado.irpj.toFixed(2)}%</td>
+            <td>${resultado.csll.toFixed(2)}%</td>
+            <td>${resultado.cofins.toFixed(2)}%</td>
+            <td>${resultado.pis.toFixed(2)}%</td>
+            <td>${resultado.iss.toFixed(2)}%</td>
+        </tr>
+    `;
+            break;
+        case 'Anexo5':
+            table.innerHTML = `
+        <tr>
+            <th>Receita Bruta em 12 meses</th>
+            <th>Alíquota</th>
+            <th>IRPJ</th>
+            <th>CSLL</th>
+            <th>COFINS</th>
+            <th>PIS</th>
+            <th>CPP</th>
+            <th>ISS</th>
+        </tr>
+        <tr>
+            <td>${resultado.receitaBruta}</td>
+            <td>${resultado.aliquota}%</td>
+            <td>${resultado.irpj.toFixed(2)}%</td>
+            <td>${resultado.csll.toFixed(2)}%</td>
+            <td>${resultado.cofins.toFixed(2)}%</td>
+            <td>${resultado.pis.toFixed(2)}%</td>
+            <td>${resultado.cpp.toFixed(2)}%</td>
+            <td>${resultado.iss.toFixed(2)}%</td>
+        </tr>
+    `;
+            break;
+        default:
+            return null;
+
+    }
+
     document.body.appendChild(table);
 }
