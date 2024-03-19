@@ -84,6 +84,17 @@ th, td {
     text-align: left;
 }
 
+th {
+    background-color: black;
+    color: white;
+}
+
+#tabela-anexo {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+
 </style>
 
 <body>
@@ -104,23 +115,6 @@ th, td {
 
         </form>
     </div>
-
-    <script>
-        function formatNumber(num) {
-            return num.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
-
-        const num1Input = document.getElementById('num1');
-        const num2Input = document.getElementById('num2');
-
-        num1Input.addEventListener('input', function(event) {
-            num1Input.value = formatNumber(num1Input.value);
-        });
-
-        num2Input.addEventListener('input', function(event) {
-            num2Input.value = formatNumber(num2Input.value);
-        });
-    </script>
 </body>
 
 <script src="aliquota.js"></script>
