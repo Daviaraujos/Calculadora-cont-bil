@@ -299,6 +299,8 @@ function exibirResultado(resultado, anexoSelecionado) {
     const table = document.createElement('table');
     table.id = 'tabela-resultado';
 
+    document.body.appendChild(table);
+
     switch (anexoSelecionado) {
         case 'Anexo1':
             table.innerHTML = `
@@ -332,7 +334,7 @@ function exibirResultado(resultado, anexoSelecionado) {
                 "Cofins": ["12,74%", "12,74%", "12,74%", "12,74%", "12,74%", "28,27%"],
                 "PIS/Pasep": ["2,76%", "2,76%", "2,76%", "2,76%", "2,76%", "6,13%"],
                 "CPP": ["41,50%", "41,50%", "42,00%", "42,00%", "42,00%", "42,10%"],
-                "ICMS": ["34,00%", "34,00%", "33,50%", "33,50%", "33,50%", ""]
+                "ICMS": ["34,00%", "34,00%", "33,50%", "33,50%", "33,50%", "-"]
             }];
 
         createTable(data1);
@@ -371,7 +373,7 @@ function exibirResultado(resultado, anexoSelecionado) {
             "Cofins": ["11,51%", "11,51%", "11,51%", "11,51%", "11,51%", "20,96%"],
             "PIS/Pasep": ["2,49%", "2,49%", "2,49%", "2,49%", "2,49%", "4,54%"],
             "CPP": ["37,50%", "37,50%", "37,50%", "37,50%", "37,50%", "23,50%"],
-            "ICMS": ["7,50%", "7,50%", "7,50%", "7,50%", "7,50%", ""]
+            "ICMS": ["7,50%", "7,50%", "7,50%", "7,50%", "7,50%", "-"]
         }];
 
         createTable(data2);
@@ -408,7 +410,7 @@ function exibirResultado(resultado, anexoSelecionado) {
             "Cofins": ["12,82%", "14,05%", "13,64%", "13,64%", "12,82%", "16,03%"],
             "PIS/Pasep": ["2,78%", "3,05%", "2,96%", "2,96%", "2,78%", "3,47%"],
             "CPP": ["43,40%", "43,40%", "43,40%", "43,40%", "43,40%", "30,50%"],
-            "ICMS": ["33,50%", "32,00%", "32,50%", "32,50%", "33,50%", ""]
+            "ICMS": ["33,50%", "32,00%", "32,50%", "32,50%", "33,50%", "-"]
         }];
         
         createTable(data3);
@@ -442,8 +444,8 @@ function exibirResultado(resultado, anexoSelecionado) {
             "CSLL": ["15,20%", "15,20%", "15,20%", "19,20%", "19,20%", "21,50%"],
             "Cofins": ["17,67%", "20,55%", "19,73%", "18,90%", "18,08%", "20,55%"],
             "PIS/Pasep": ["3,83%", "4,45%", "4,27%", "4,10%", "3,92%", "4,45%"],
-            "CPP": ["", "", "", "", "", ""],
-            "ICMS": ["44,50%", "40,00%", "40,00%", "40,00%", "40,00%", ""]
+            "CPP": ["-", "-", "-", "-", "-", "-"],
+            "ICMS": ["44,50%", "40,00%", "40,00%", "40,00%", "40,00%", "-"]
         }];
         
         createTable(data4);
@@ -480,7 +482,7 @@ function exibirResultado(resultado, anexoSelecionado) {
             "Cofins": ["14,10%", "14,10%", "14,92%", "15,74%", "14,10%", "16,44%"],
             "PIS/Pasep": ["3,05%", "3,05%", "3,23%", "3,41%", "3,05%", "3,56%"],
             "CPP": ["28,85%", "27,85%", "23,85%", "23,85%", "23,85%", "29,50%"],
-            "ICMS": ["14,00%", "17,00%", "19,00%", "21,00%", "23,50%", ""]
+            "ICMS": ["14,00%", "17,00%", "19,00%", "21,00%", "23,50%", "-"]
         }];
         
         createTable(data5);
@@ -488,7 +490,7 @@ function exibirResultado(resultado, anexoSelecionado) {
         default:
             return null;
     }
-    document.body.appendChild(table);
+    
 }
 
 
