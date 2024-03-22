@@ -492,5 +492,3 @@ function exibirResultado(resultado, anexoSelecionado) {
     }
     
 }
-
-
