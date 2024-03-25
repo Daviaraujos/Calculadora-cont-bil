@@ -13,10 +13,12 @@
     * {
     background-color: white;
     font-family: "Poppins", sans-serif;
+    margin-bottom: 100px auto; /* Adiciona um espaço de 100px abaixo da tabela */
+
 }
 
 div {
-    padding: 20px;
+    padding: 10px;
 }
 
 p {
@@ -42,7 +44,7 @@ th {
     text-align: center;
     justify-content: center;
     display: flex;
-    gap: 10px;
+    gap: 3px;
 }
 
 .form input {
@@ -76,25 +78,25 @@ th {
     border: none;
 }
 
-table {
+/* Tabela resultado - 01*/
+ table {
     font-size: 12px;
-    width: 50%;
+    width: 60%;
     height: 5px; 
     border-collapse: collapse;
-    margin: 0 auto;
-    margin-top: 1px; /* Ajuste a quantidade de margem superior conforme necessário */
-
+    margin: -15px auto; /*Margem da tabela*/
+    margin-top: 0px; /* Ajuste a quantidade de margem superior conforme necessário */
 }
-
+/* Tabela resultado - 01*/
 table, th, td {
     border: 1px solid black;
 }
-
+/* Tabela resultado - 01*/
 th, td {
     padding: 8px;
     text-align: left;
 }
-
+/* Tabela resultado - 01*/
 th {
     background-color: black;
     color: white;
@@ -106,11 +108,81 @@ th {
     margin-top: 40px;
 }
 
+/* Também está modificando a tabela de resultados "?"*/
+/* Estilo para o contêiner do histórico */
+#historico-container {
+    position: relative;
+    margin-bottom: 20px auto 20px; /* Ajuste conforme necessário para dar espaço suficiente para o título */
+}
+
+/* Estilo para o título do histórico */
+#historico-container h1 {
+    text-align: center; /* Centraliza o título */
+    margin-bottom: -100px; /* Espaçamento inferior entre o título e a tabela */
+}
+
+/* Tabela histórico */
+#historico {
+    font-size: 12px;
+    width: 100%;
+    border-collapse: collapse;
+    position: absolute; /* ou absolute */
+    bottom: -100px; /* Ajuste conforme necessário */
+    left: 50%; /* Posiciona a tabela no centro horizontal */
+    transform: translateX(-50%); /* Corrige a posição para o centro horizontal */
+    padding: 20px 0; /* Adiciona espaçamento de 20px acima e abaixo da tabela */
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+}
+
+/* Ajuste adicional */
+#historico th, #historico td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+#historico th {
+    background-color: black;
+    color: white;
+    font-size: 13px;
+}
+
+/* Estilo para o contêiner do histórico */
+#historico-container {
+    position: relative;
+    margin-bottom: 100px auto; /* Adiciona um espaço de 100px abaixo da tabela */
+}
+
+/* Estilo para o título do histórico */
+#historico-container h1 {
+    text-align: center; /* Centraliza o título */
+}
+
+/*Botão de exportar*/
+.export-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adiciona espaço acima do botão de exportação */
+}
+
+.export-btn button {
+    padding: 10px 20px; /* Adiciona preenchimento interno ao botão */
+    border-radius: 5px;
+    background-color: #007bff; /* Cor azul para o botão */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.export-btn button:hover {
+    background-color: #0056b3; /* Altera a cor de fundo ao passar o mouse sobre o botão */
+}
 
 </style>
 
 <body>
-    <div>
+<div class="container">
+    <div>        
         <h1>Tabela Simples Nacional</h1>
         <form class="form">
             <input id="num1" type="text" placeholder="* Receita Bruta"/>
@@ -126,14 +198,20 @@ th {
             <button type="button" onclick="resetTab()">Resetar</button>
             <button type="button" onClick="exibirHistorico()">Histórico</button>
             <button type="button" onClick="resetHistorico()">Resetar Histórico</button>
-            <button type="button" onClick="exportar()">Exportar</button>
-            
+            <select id="exportOptions">
+                <option value="csv">CSV</option>
+                <option value="excel">Excel</option>
+            </select>
+            <button type="button" onClick="exportar()">Baixar</button>                                         
         </form>
         <p>* Receita e Folha Acumulada dos últimos 12 meses.</p>
     </div>
+</div>    
 
+
+<div class='container'>
     <div id="historico"></div>
-    
+</div>  
 </body>
 
 <script>
@@ -163,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const anexoSelecionado = document.getElementById('anexos').value;
 
         const resultado = calcularImpostos(receitaBruta, anexoSelecionado);
-        exibirResultado(resultado, anexoSelecionado);
+        exibirResultado(resultado , anexoSelecionado);
 
         // Adicionar o resultado atual ao histórico
         addToHistorico(resultado);
@@ -477,8 +555,6 @@ function createTable(data) {
         
 }
 
-
-
 function exibirResultado(resultado, anexoSelecionado) {
     // Remover a tabela anterior, se existir
     const tabelaAnterior = document.getElementById('tabela-resultado');
@@ -681,8 +757,8 @@ function exibirResultado(resultado, anexoSelecionado) {
         default:
             return null;
     }
-
 }
+
 
 //Função de exibir o histórico na tela
 function exibirHistorico() {
@@ -693,7 +769,7 @@ function exibirHistorico() {
 
     if (historico.length > 0) {
         const table = document.createElement('table');
-        table.id = 'tabela-historico';
+        table.id = 'historico';
         table.style.width = '50%';
         table.style.margin = '0 auto';
         table.style.borderCollapse = 'collapse';
@@ -739,6 +815,83 @@ function exibirHistorico() {
         tabelaHistorico.innerHTML = '<p>Nenhum histórico encontrado.</p>';
     }
 }
+
+// Exportação
+function exportar() {
+    const tabelaResultado = document.getElementById('tabela-resultado');
+    if (!tabelaResultado) {
+        alert('Não há dados para exportar.');
+        return;
+    }
+
+    const exportOptions = document.getElementById('exportOptions');
+    const format = exportOptions.value;
+    let filename = 'dados_exportados';
+    let content;
+    let type;
+
+    switch (format) {
+        case 'csv':
+            content = tableToCSV(tabelaResultado);
+            filename += '.csv';
+            type = 'text/csv';
+            break;
+        case 'excel':
+            content = tableToExcel(tabelaResultado);
+            filename += '.xlsx';
+            type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+            break;
+        default:
+            alert('Formato de exportação não reconhecido.');
+            return;
+    }
+
+    downloadFile(content, filename, type);
+}
+
+function tableToCSV(table) {
+    let csv = [];
+    const rows = table.querySelectorAll('tr');
+
+    for (const row of rows) {
+        const rowData = [];
+        for (const cell of row.querySelectorAll('th, td')) {
+            rowData.push(cell.textContent.trim());
+        }
+        csv.push(rowData.join(','));
+    }
+
+    return csv.join('\n');
+}
+
+function tableToExcel(table) {
+    let html = table.outerHTML;
+    const blob = new Blob([html], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    return window.URL.createObjectURL(blob);
+}
+
+function downloadFile(content, filename, type) {
+    // Criando um objeto de URL temporário
+    const url = window.URL.createObjectURL(new Blob([content], { type }));
+
+    // Criando um link temporário
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename);
+
+    // Simulando um clique para iniciar o download
+    document.body.appendChild(link);
+    link.click();
+
+    // Removendo o link e liberando o objeto de URL após um curto intervalo
+    setTimeout(() => {
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+    }, 100);
+}
+
+
+
 
 </script>
 </html>
